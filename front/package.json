@@ -2,7 +2,9 @@
   "name": "front",
   "version": "0.1.0",
   "private": true,
+  "main": "main.js",
   "scripts": {
+    "start" : "vue-cli-service build && electron .",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
@@ -15,6 +17,7 @@
   "devDependencies": {
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "electron": "^16.0.6",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [
