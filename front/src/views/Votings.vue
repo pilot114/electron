@@ -5,9 +5,11 @@
         </h3>
 
         <sui-button-group icons size="small">
-            <sui-button icon="download" content=" Загрузить из файла"/>
-            <sui-button icon="upload" content=" Выгрузить в файл" />
-            <sui-button icon="close" content=" Очистить список" />
+            <sui-button icon="download" content=" Загрузить из файла" @click="readFile($refs.readFile)"/>
+            <input type="file" style="display: none;" ref="readFile">
+            <sui-button icon="upload" content=" Выгрузить в файл" @click="writeFile"/>
+
+            <sui-button icon="close" color="red" content=" Очистить список" @click="clear"/>
             <sui-button positive @click.native="toggle">Добавить вручную</sui-button>
         </sui-button-group>
 
@@ -128,6 +130,15 @@ export default {
         toggle() {
             this.open = !this.open;
         },
+        readFile(el) {
+            (new repo.PersistManager()).batchSaveVotings(el)
+        },
+        writeFile() {
+            (new repo.PersistManager()).batchLoadVotings('votings.csv')
+        },
+        clear() {
+            (new repo.PersistManager()).clearVotings()
+        }
     }
 }
 </script>

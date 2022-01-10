@@ -5,9 +5,11 @@
         </h3>
 
         <sui-button-group icons size="small">
-            <sui-button icon="download" content=" Загрузить из файла"/>
-            <sui-button icon="upload" content=" Выгрузить в файл" />
-            <sui-button icon="close" content=" Очистить список" />
+            <sui-button icon="download" content=" Загрузить из файла" @click="readFile($refs.readFile)"/>
+            <input type="file" style="display: none;" ref="readFile">
+            <sui-button icon="upload" content=" Выгрузить в файл" @click="writeFile"/>
+
+            <sui-button icon="close" color="red" content=" Очистить список" @click="clear"/>
             <sui-button positive @click.native="toggle">Добавить вручную</sui-button>
         </sui-button-group>
 
@@ -17,16 +19,16 @@
                 <sui-form>
                     <sui-form-field>
                         <label>Полное имя</label>
-                        <input placeholder="Имя" />
+                        <input placeholder="Имя" v-model="newUser.name" />
                     </sui-form-field>
                     <sui-form-field>
                         <label>UUID</label>
-                        <input placeholder="UUID" />
+                        <input placeholder="UUID" v-model="newUser.uuid" />
                     </sui-form-field>
                 </sui-form>
             </sui-modal-content>
             <sui-modal-actions>
-                <sui-button positive @click.native="toggle">
+                <sui-button positive @click.native="saveNew">
                     Добавить
                 </sui-button>
             </sui-modal-actions>
@@ -74,8 +76,7 @@ import repo from '../repo.js'
 
 export default {
     created() {
-        let users = new repo.Users()
-        this.users = users.getAll()
+        this.users = (new repo.Users()).getAll()
     },
     data() {
         return {
@@ -86,13 +87,27 @@ export default {
                 { key: 'Moderator', text: 'Moderator', value: 'Moderator' },
                 { key: 'Admin', text: 'Admin', value: 'Admin' },
             ],
-            open: false
+            open: false,
+            newUser: {id: null, uuid: null}
         }
     },
     methods: {
         toggle() {
             this.open = !this.open;
         },
+        readFile(el) {
+            (new repo.PersistManager()).batchSaveUsers(el)
+        },
+        writeFile() {
+            (new repo.PersistManager()).batchLoadUsers('users.csv')
+        },
+        clear() {
+            (new repo.PersistManager()).clearUsers()
+        },
+        saveNew() {
+            (new repo.PersistManager()).addUser(this.newUser)
+            this.toggle()
+        }
     }
 }
 </script>
