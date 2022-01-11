@@ -46,7 +46,7 @@
             </sui-table-header>
 
             <sui-table-body>
-                <sui-table-row v-for="user in users">
+                <sui-table-row v-for="user in users" :key="user.id">
                     <sui-table-cell>{{ user.id }}</sui-table-cell>
                     <sui-table-cell>{{ user.uuid }}</sui-table-cell>
                     <sui-table-cell>{{ user.name }}</sui-table-cell>

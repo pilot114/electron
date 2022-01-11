@@ -75,7 +75,7 @@
             </sui-table-header>
 
             <sui-table-body>
-                <sui-table-row v-for="voting in votings">
+                <sui-table-row v-for="voting in votings" :key="voting.id">
                     <sui-table-cell>{{ voting.id }}</sui-table-cell>
                     <sui-table-cell>{{ voting.name }}</sui-table-cell>
                     <sui-table-cell>

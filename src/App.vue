@@ -16,7 +16,7 @@ export default {
         // создаем объект пользователя
         let anon = {
             id: null,
-            accessLevel: 10,
+            accessLevel: 1,
             name: 'Гость'
         }
         this.$root.user = anon

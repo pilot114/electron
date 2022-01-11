@@ -10,7 +10,7 @@
         </sui-table-header>
 
         <sui-table-body>
-            <sui-table-row v-for="voting in votings">
+            <sui-table-row v-for="voting in votings" :key="voting.id">
                 <sui-table-cell>{{ voting.id }}</sui-table-cell>
                 <sui-table-cell>{{ voting.name }}</sui-table-cell>
                 <sui-table-cell>{{ voting.start }} - {{ voting.end }}</sui-table-cell>
@@ -31,7 +31,7 @@
                         </sui-table-header>
 
                         <sui-table-body>
-                            <sui-table-row v-for="choice in voting.choices">
+                            <sui-table-row v-for="choice in voting.choices" :key="choice.id">
                                 <sui-table-cell>
                                     <h4 is="sui-header">
                                         <sui-header-content>

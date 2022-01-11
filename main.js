@@ -10,28 +10,23 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            preload: path.join(__dirname, 'preload.js')
         }
     })
 
-    mainWindow.loadURL(
-        url.format({
-            pathname: path.join(__dirname, `./dist/index.html`),
-            protocol: "file:",
-            slashes: true
-        })
-    );
-    mainWindow.on('closed', function () {
+    mainWindow.loadFile(`./dist/index.html`)
+    mainWindow.on('closed', () => {
         mainWindow = null
     })
 }
-console.log(app);
+
 app.on('ready', createWindow)
 
-app.on('window-all-closed', function () {
+app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
 })
 
-app.on('activate', function () {
+app.on('activate', () => {
     if (mainWindow === null) createWindow()
 })
