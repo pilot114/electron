@@ -16,45 +16,58 @@
         <sui-modal v-model="open">
             <sui-modal-header>Новое голосование</sui-modal-header>
             <sui-modal-content image>
-                <sui-form>
-                        <sui-form-field>
-                            <label>Название</label>
-                            <input placeholder="Название" />
-                        </sui-form-field>
-                        <sui-form-fields>
-                            <sui-form-field>
-                                <label>Начало голосования</label>
-                                <sui-input placeholder="Начало" type="date" />
-                            </sui-form-field>
-                            <sui-form-field>
-                                <label>Конец голосования</label>
-                                <sui-input placeholder="Конец" type="date" />
-                            </sui-form-field>
-                        </sui-form-fields>
-                        <sui-form-field width="five">
-                            <label>Тип</label>
-                            <sui-dropdown
-                                placeholder="Тип"
-                                selection
-                                :options="types"
-                                v-model="newType"
-                            />
-                        </sui-form-field>
+                <sui-grid :columns="2" divided>
+                    <sui-grid-row>
+                        <sui-grid-column>
+                            <sui-form>
+                                <sui-form-field>
+                                    <label>Название</label>
+                                    <input placeholder="Название" />
+                                </sui-form-field>
+                                <sui-form-fields>
+                                    <sui-form-field>
+                                        <label>Начало голосования</label>
+                                        <sui-input placeholder="Начало" type="date" />
+                                    </sui-form-field>
+                                    <sui-form-field>
+                                        <label>Конец голосования</label>
+                                        <sui-input placeholder="Конец" type="date" />
+                                    </sui-form-field>
+                                </sui-form-fields>
+                                <sui-form-field width="five">
+                                    <label>Тип</label>
+                                    <sui-dropdown
+                                        placeholder="Тип"
+                                        selection
+                                        :options="types"
+                                        v-model="newType"
+                                    />
+                                </sui-form-field>
+                                <sui-form-field>
+                                    <label>Варианты</label>
+                                    <sui-dropdown
+                                        multiple
+                                        fluid
+                                        :options="(newType === 'За кандидата') ? userNames : []"
+                                        placeholder="Варианты"
+                                        search
+                                        selection
+                                        allow-additions
+                                        v-model="newVariants"
+                                    />
+                                </sui-form-field>
+                            </sui-form>
+                        </sui-grid-column>
+                        <sui-grid-column>
+                            <sui-form>
+                                <label><b>Добавьте код смарт-контракта:</b></label>
+                                <textarea rows="20"></textarea>
+                            </sui-form>
+                        </sui-grid-column>
+                    </sui-grid-row>
+                </sui-grid>
 
-                        <sui-form-field>
-                            <label>Варианты</label>
-                            <sui-dropdown
-                                multiple
-                                fluid
-                                :options="(newType === 'За кандидата') ? userNames : []"
-                                placeholder="Варианты"
-                                search
-                                selection
-                                allow-additions
-                                v-model="newVariants"
-                            />
-                        </sui-form-field>
-                    </sui-form>
+
             </sui-modal-content>
             <sui-modal-actions>
                 <sui-button positive @click.native="toggle">

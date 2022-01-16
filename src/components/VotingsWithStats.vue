@@ -2,7 +2,7 @@
     <sui-table celled>
         <sui-table-header>
             <sui-table-row>
-                <sui-table-header-cell>ID</sui-table-header-cell>
+                <sui-table-header-cell>ID transaction</sui-table-header-cell>
                 <sui-table-header-cell>Название</sui-table-header-cell>
                 <sui-table-header-cell>Период</sui-table-header-cell>
                 <sui-table-header-cell>Прогресс</sui-table-header-cell>
@@ -90,7 +90,7 @@ export default {
             return `Явка ${this.calcPercent(voting)}% (из ${voting.total} участников)`
         },
         calcPercent(voting) {
-            return (voting.count / (voting.total / 100)) || 100
+            return ((voting.count / (voting.total / 100)) || 100).toFixed(2)
         }
     }
 }

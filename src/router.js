@@ -7,43 +7,43 @@ const routes = [
   {
     path: '/',
     name: 'Голосования',
-    component: () => import('../views/Home.vue'),
+    component: () => import('./views/Home.vue'),
     meta: { accessLevel: 0 }
   },
   {
     path: '/profile',
     name: 'Профиль',
-    component: () => import('../views/Profile.vue'),
+    component: () => import('./views/Profile.vue'),
     meta: { accessLevel: 1 }
   },
   {
     path: '/users',
     name: 'Управление пользователями',
-    component: () => import('../views/Users.vue'),
+    component: () => import('./views/Users.vue'),
     meta: { accessLevel: 10 }
   },
   {
     path: '/votings',
     name: 'Управление голосованиями',
-    component: () => import('../views/Votings.vue'),
+    component: () => import('./views/Votings.vue'),
     meta: { accessLevel: 10 }
   },
   {
     path: '/vote/:id',
     name: 'Голосование N',
-    component: () => import('../views/Vote.vue'),
+    component: () => import('./views/Vote.vue'),
     meta: { accessLevel: 1 }
   },
   {
     path: '/login',
     name: 'Войти',
-    component: () => import('../views/Login.vue'),
+    component: () => import('./views/Login.vue'),
     meta: { accessLevel: 0, noCascade: true }
   },
   {
     path: '/logout',
     name: 'Выход',
-    component: () => import('../views/Logout.vue'),
+    component: () => import('./views/Logout.vue'),
     meta: { accessLevel: 1 }
   }
 ]
