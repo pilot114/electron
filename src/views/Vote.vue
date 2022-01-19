@@ -11,15 +11,14 @@
             <sui-button
                 toggle
                 content="Проголосовать"
-                disabled
             />
-            <transition name="fade">
-                <sui-message
-                    header="Спасибо!"
-                    content="Ваш голос учтён. Отозвать голос можно в профиле пользователя"
-                    dismissable
-                />
-            </transition>
+<!--            <transition name="fade">-->
+<!--                <sui-message-->
+<!--                    header="Спасибо!"-->
+<!--                    content="Ваш голос учтён. Отозвать голос можно в профиле пользователя"-->
+<!--                    dismissable-->
+<!--                />-->
+<!--            </transition>-->
         </sui-form>
     </div>
 </template>
